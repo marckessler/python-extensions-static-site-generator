@@ -134,7 +134,7 @@ def test_hooks_event_hook_module2(parse):
         event_exists
     ), "Are you defining a function called `event` with the correct arguments?"
 
-    first_for_exists = (
+    first_for_matches = (
         event.for_()
         .match(
             {
@@ -148,14 +148,14 @@ def test_hooks_event_hook_module2(parse):
                 "iter_args_0_args_1_type": "Dict",
             }
         )
-        .exists()
     )
+    first_for_exists = first_for_matches.exists ()
 
     assert (
         first_for_exists
     ), "Do you have a `for` loop, looping through `sorted(_callbacks.get(hook, {})`? Is the current loop value called `order`?"
 
-    second_for_exists = (
+    second_for_matches = (
         event.for_()
         .match(
             {
@@ -170,8 +170,8 @@ def test_hooks_event_hook_module2(parse):
                 "0_iter_slice_value_id": "order",
             }
         )
-        .exists()
     )
+    second_for_exists = second_for_matches.exists()
 
     assert (
         second_for_exists
